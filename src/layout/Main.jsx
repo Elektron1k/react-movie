@@ -23,20 +23,18 @@ function Main() {
   }, [searchText]);
 
   function startSearch(textSearch, radioButtonSearch) {
-    if (textSearch) {
-      switch (radioButtonSearch) {
-        case 'all':
-          setSearchText(textSearch);
-          break;
-        case 'movie':
-          console.log(textSearch + '&type=' + radioButtonSearch);
-          setSearchText(textSearch + '&type=' + radioButtonSearch);
-          break;
-        case 'series':
-          console.log(textSearch + '&type=' + radioButtonSearch);
-          setSearchText(textSearch + '&type=' + radioButtonSearch);
-          break;
-      }
+    switch (radioButtonSearch) {
+      case 'all':
+        setSearchText(textSearch);
+        break;
+      case 'movie':
+        console.log(textSearch + '&type=' + radioButtonSearch);
+        setSearchText(textSearch + '&type=' + radioButtonSearch);
+        break;
+      case 'series':
+        console.log(textSearch + '&type=' + radioButtonSearch);
+        setSearchText(textSearch + '&type=' + radioButtonSearch);
+        break;
     }
   }
 
