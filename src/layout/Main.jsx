@@ -3,7 +3,7 @@ import Movies from '../components/Movies';
 import Preloader from '../components/Preloader';
 import Search from '../components/Search';
 
-const API_SEARCH = 'http://www.omdbapi.com/?apikey=50b8b6e&s=';
+const API_REY = process.env.REACT_APP_API_KEY;
 
 function Main() {
   const [searchText, setSearchText] = useState('');
@@ -11,31 +11,21 @@ function Main() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch(API_SEARCH + searchText)
+    setIsLoading(true);
+    fetch(`http://www.omdbapi.com/?apikey=${API_REY}&s=${searchText}`)
       .then((res) => res.json())
       .then((json) => {
         setMovies(json.Search);
       })
-      .catch((err) => console.log(err))
       .finally(() => {
         setIsLoading(false);
       });
   }, [searchText]);
 
   function startSearch(textSearch, radioButtonSearch) {
-    switch (radioButtonSearch) {
-      case 'all':
-        setSearchText(textSearch);
-        break;
-      case 'movie':
-        console.log(textSearch + '&type=' + radioButtonSearch);
-        setSearchText(textSearch + '&type=' + radioButtonSearch);
-        break;
-      case 'series':
-        console.log(textSearch + '&type=' + radioButtonSearch);
-        setSearchText(textSearch + '&type=' + radioButtonSearch);
-        break;
-    }
+    radioButtonSearch === 'all'
+      ? setSearchText(textSearch)
+      : setSearchText(textSearch + '&type=' + radioButtonSearch);
   }
 
   return (

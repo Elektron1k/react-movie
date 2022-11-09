@@ -7,12 +7,12 @@ function Search({ search }) {
   function getSearch() {
     if (textSearch) {
       search(textSearch, radioSearch);
-      setTextSearch('');
     }
   }
 
-  function changeRadio(e) {
+  function chengeRadio(e) {
     setRadioSearch(e.target.value);
+    search(textSearch, e.target.value);
   }
 
   return (
@@ -40,15 +40,15 @@ function Search({ search }) {
             Search
           </button>
         </div>
-        <p>
+        <div>
           <label>
             <input
               className="with-gap"
               name="type"
               type="radio"
               value="all"
-              checked={radioSearch === 'all' ? true : false}
-              onChange={(e) => changeRadio(e)}
+              checked={radioSearch === 'all'}
+              onChange={chengeRadio}
             />
             <span>All</span>
           </label>
@@ -58,8 +58,8 @@ function Search({ search }) {
               name="type"
               type="radio"
               value="movie"
-              checked={radioSearch === 'movie' ? true : false}
-              onChange={(e) => changeRadio(e)}
+              checked={radioSearch === 'movie'}
+              onChange={chengeRadio}
             />
             <span>Movies only</span>
           </label>
@@ -69,12 +69,12 @@ function Search({ search }) {
               name="type"
               type="radio"
               value="series"
-              checked={radioSearch === 'series' ? true : false}
-              onChange={(e) => changeRadio(e)}
+              checked={radioSearch === 'series'}
+              onChange={chengeRadio}
             />
             <span>Series only</span>
           </label>
-        </p>
+        </div>
       </div>
     </div>
   );
