@@ -12,10 +12,13 @@ function Main() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://www.omdbapi.com/?apikey=${API_REY}&s=${searchText}`)
+    fetch(`https://www.omdbapi.com/?apikey=${API_REY}&s=${searchText}`)
       .then((res) => res.json())
       .then((json) => {
         setMovies(json.Search);
+      })
+      .catch((err) => {
+        console.error(err);
       })
       .finally(() => {
         setIsLoading(false);
